@@ -22,28 +22,21 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     agent.add(`I'm sorry, can you try again?`);
   }
   
-  function handleAskPriceIntent(agent) {
-      const selectedProduct = agent.contexts[0].parameters.products;
-      const quantity = agent.parameters.quantity;
-      
-      let unitPrice = 0;
-      if (selectedProduct === 'clothes') {
-          unitPrice = 10;
-      } else if (selectedProduct === 'shoes') {
-          unitPrice = 85;
-      } else if (selectedProduct === 'pants') {
-          unitPrice = 65;
-      }
-      
-      const total = unitPrice * quantity;
-      
-      agent.add(`${quantity} ${selectedProduct} is $${total}`);
+  function getOrder(agent) {
+    const waffleQuantity = agent.parameters.waffleQuantity;
+    const waffleFlavor = agent.parameters.waffleFlavors;
+    
+    if (waffleQuantity < 1) {
+        agent.add('Hey, You need to order at least 1 waffle. Select your')
+        agent.add(new Suggestion(1));
+        agent.add(new Suggestion(2));
+        agent.add(new Suggestion(3));
+    } else {
+      agent.add(`Sure. ${waffleQuantity} ${waffleFlavor} waffle coming right up. How would you like to pay?`);
+      agent.add(new Suggestion('Cash'));
+      agent.add(new Suggestion('PayNow'));
+    }
   }
-
-  function handleAskLocationIntent(agent) {
-    agent.add('We are located at 170 Upper Bukit Timah Road #05-23, #05-22, #05-19, #05-18 Bukit Timah Shopping Centre Singapore 588179. 5 mins walk from Beauty World MRT.');
-  }
-
 
   // // Uncomment and edit to make your own intent handler
   // // uncomment `intentMap.set('your intent name here', yourFunctionHandler);`
@@ -78,8 +71,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   let intentMap = new Map();
   intentMap.set('Default Welcome Intent', welcome);
   intentMap.set('Default Fallback Intent', fallback);
-  intentMap.set('Ask_Price_Intent', handleAskPriceIntent);
-  intentMap.set('Ask_Location_Intent', handleAskLocationIntent);
+  intentMap.set('getOrder', getOrder);
   // intentMap.set('your intent name here', yourFunctionHandler);
   // intentMap.set('your intent name here', googleAssistantHandler);
   agent.handleRequest(intentMap);

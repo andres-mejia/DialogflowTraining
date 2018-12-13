@@ -1,0 +1,39 @@
+{
+  "entries": [
+    {
+      "value": "cash",
+      "synonyms": [
+        "cash",
+        "notes",
+        "coins"
+      ]
+    },
+    {
+      "value": "paynow",
+      "synonyms": [
+        "paynow",
+        "dbs paynow",
+        "posb paynow",
+        "ocbc paynow"
+      ]
+    },
+    {
+      "value": "nets",
+      "synonyms": [
+        "nets",
+        "enets"
+      ]
+    },
+    {
+      "value": "card",
+      "synonyms": [
+        "card",
+        "credit card",
+        "debit card",
+        "credit",
+        "debit"
+      ]
+    }
+  ],
+  "name": "paymentOptions"
+}
