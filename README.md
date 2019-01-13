@@ -7,6 +7,8 @@ The course outline can be found in
 
 https://www.tertiarycourses.com.sg/building-conversational-dialogflow-chatbot.html
 
+https://www.tertiarycourses.com.my/building-conversational-dialogflow-chatbot-malaysia.html
+
 <p><strong>Module 1: Overview of Chatbot</strong></p>
 <ul>
 <li>What are Chatbots?</li>
